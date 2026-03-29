@@ -33,8 +33,8 @@ from telegram.ext import (
 
 BOT_TOKEN    = "8696648453:AAE4dMindL8zgMb7Kczsq1eTeVOVIB0YHRQ"    
 DEVELOPER_ID = 1948015235                  
-FFMPEG_PATH  = "/opt/homebrew/bin/ffmpeg"  # change if needed (run: which ffmpeg)
-DOWNLOAD_DIR = os.path.join(os.path.expanduser("~"), "Downloads", "YT_Bot_Downloads")
+FFMPEG_PATH = "/usr/bin/ffmpeg" # change if needed (run: which ffmpeg)
+DOWNLOAD_DIR = os.path.join(os.path.dirname(__file__), "downloads")
 
 logging.basicConfig(level=logging.INFO)
 
