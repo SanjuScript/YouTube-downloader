@@ -1,0 +1,7 @@
+# requirements.txt
+python-telegram-bot==20.7
+yt-dlp
+```
+```
+# Procfile (no extension)
+worker: python tele_main.py
