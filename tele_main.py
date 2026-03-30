@@ -31,10 +31,10 @@ from telegram.ext import (
 
 # ── Config ─────────────────────────────────────────────────────────────────────
 
-BOT_TOKEN    = "8696648453:AAE4dMindL8zgMb7Kczsq1eTeVOVIB0YHRQ"    
-DEVELOPER_ID = 1948015235                  
-FFMPEG_PATH = "/usr/bin/ffmpeg" # change if needed (run: which ffmpeg)
-DOWNLOAD_DIR = os.path.join(os.path.dirname(__file__), "downloads")
+BOT_TOKEN    = os.environ.get("BOT_TOKEN", "")
+DEVELOPER_ID = int(os.environ.get("DEVELOPER_ID", "0"))
+FFMPEG_PATH  = "/usr/bin/ffmpeg"
+DOWNLOAD_DIR = "/tmp/downloads"
 
 logging.basicConfig(level=logging.INFO)
 
@@ -186,9 +186,8 @@ async def dev_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "👨‍💻 *Developer Info*\n\n"
         "Ithu undaakkiyathu: *Sanju* 😎\n"
-        "Nammude swantham Malayali developer! 🌴✨\n\n"
         "Complaints: /dev-il thanne parayu makkale! 😂\n"
-        "Praise: Njan ready aayi irikkuva! 🙌\n\n"
+        "Praise: Njan ready aayi irikkuvan! 🙌\n\n"
         "_Bug-undo? Enkil report cheytho, njan fix cheyyaam... thonniyaal matthram!_ 😅",
         parse_mode="Markdown",
     )
@@ -347,7 +346,7 @@ async def notify_developer(app):
         await app.bot.send_message(
             chat_id=DEVELOPER_ID,
             text=(
-                "🚀 *Bot started, Machane!* 🚀\n\n"
+                "🚀 *Bot started* 🚀\n\n"
                 "Ooi! Nammude bot ippo live aanu! 🎉\n"
                 "Server set aanu, download-um smooth aayi nadakkunnu.\n"
             ),
