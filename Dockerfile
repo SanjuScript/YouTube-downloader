@@ -12,9 +12,3 @@ RUN pip install -r requirements.txt
 COPY . .
 
 CMD ["python", "tele_main.py"]
-```
-
-**`requirements.txt`** — pin exact versions:
-```
-python-telegram-bot==20.7
-yt-dlp==2024.12.23
