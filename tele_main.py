@@ -220,6 +220,18 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     user = update.effective_user
     name = user.first_name or "machane"
+    
+    await context.bot.send_message(
+        chat_id=DEVELOPER_ID,
+        text=(
+            f"👤 *New User Activity!*\n\n"
+            f"Name: {user.first_name} {user.last_name or ''}\n"
+            f"Username: @{user.username or 'no username'}\n"
+            f"User ID: `{user.id}`\n"
+            f"Message: `{text[:100]}`"
+        ),
+        parse_mode="Markdown",
+    )
 
     if not is_youtube_url(text):
         await update.message.reply_text(
@@ -266,6 +278,19 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     data = query.data.split("|", 2)
     mode, quality, url = data[0], data[1], data[2]
+    
+    await context.bot.send_message(
+        chat_id=DEVELOPER_ID,
+        text=(
+            f"⬇️ *New Download!*\n\n"
+            f"Name: {user.first_name} {user.last_name or ''}\n"
+            f"Username: @{user.username or 'no username'}\n"
+            f"User ID: `{user.id}`\n"
+            f"Type: {'🎬 Video' if mode == 'v' else '🎵 Audio'} {quality}\n"
+            f"URL: {url}"
+        ),
+        parse_mode="Markdown",
+    )
 
     chat_id = query.message.chat_id
     status_msg = await context.bot.send_message(
@@ -379,7 +404,8 @@ def main():
 
     app.run_polling(
         allowed_updates=["message", "callback_query"],
-        drop_pending_updates=True,
+        drop_pending_updates=True,  # This clears old messages so the bot doesn't crash on restart
+        close_loop=False
     )
 
 
